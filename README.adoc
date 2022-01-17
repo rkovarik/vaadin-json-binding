@@ -1,22 +1,35 @@
-= Multi field
+= Json binding
 
-Vaadin java implementation of a set of fields.
+_PropertySet / Binder / Validator_ for https://fasterxml.github.io/jackson-databind/javadoc/2.7/com/fasterxml/jackson/databind/JsonNode.html[JsonNode].
 
-== Development instructions
+== Usages
 
-Simple use case
+Reading / Writing
 [source,java]
 ----
-include::src/test/java/com/vaadin/addons/flow/components/MultiFieldDemo.java[lines = 30..30]
+NumberField number = new NumberField();
+JsonBinder binder = new JsonBinder();
+binder.forField(number).bind("number");
+binder.setBean(objectMapper.readTree("{\"number\" : \"2.0\"}));
 ----
-image::src/test/resources/Jan-17-2022 11-06-58.gif[]
 
-Advanced use case
+Json schema validation
+
+Is using https://json-schema.org/implementations.html[networknt/json-schema-validator].
+
 [source,java]
 ----
-include::src/test/java/com/vaadin/addons/flow/components/MultiFieldDemo.java[lines = 40..66]
+binder.withValidator(new JsonValidator(
+        JsonSchemaFactory.builder(
+                JsonSchemaFactory.getInstance(SpecVersion.VersionFlag.V7))
+                .build()
+                .getSchema("{\"required\": [\"number\"]}")
+        )
+);
+Label statusLabel = new Label();
+binder.setStatusLabel(statusLabel);
 ----
-image::src/test/resources/Jan-17-2022 10-23-25.gif[]
+image::demo.gif[]
 
 == Source code
-https://github.com/rkovarik/vaadin-multi-field[Github]
+https://github.com/rkovarik/vaadin-json-binding[Github]

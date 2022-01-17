@@ -3,8 +3,9 @@
 
     <groupId>com.vaadin.addons</groupId>
     <artifactId>vaadin-addon-json-binding</artifactId>
-    <version>1.0.0</version>
-    <packaging>war</packaging> <!-- TODO -->
+    <version>0.0.1-SNAPSHOT</version>
+    <packaging>war</packaging>
+<!--    TODO-->
     <name>Json binding</name>
 
     <properties>
@@ -118,6 +119,13 @@
                     <artifactId>*</artifactId>
                 </exclusion>
             </exclusions>
+        </dependency>
+
+        <dependency>
+            <groupId>com.networknt</groupId>
+            <artifactId>json-schema-validator</artifactId>
+            <version>1.0.43</version>
+<!--            <scope>test</scope>-->
         </dependency>
 
         <dependency>
