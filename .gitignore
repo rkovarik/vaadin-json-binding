@@ -1,0 +1,12 @@
+.idea/
+assembly/
+error-screenshots/
+multi-field.iml
+node/
+node_modules/
+package-lock.json
+package.json
+target/
+vaadin-addon-multi-field.iml
+webpack.config.js
+webpack.generated.js
